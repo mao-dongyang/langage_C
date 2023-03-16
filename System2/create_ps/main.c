@@ -3,20 +3,31 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-int main() {
+int main()
+{
   pid_t fpid;
 
   fpid = fork();
   // create child process
-  if (fpid < 0) {
-    printf("error in fork!");
-  } else if (fpid == 0) {
+  if (fpid == -1)
+  {
+    perror("perror in fork!");
+    exit(EXIT_FAILURE);
+  }
+
+  if (fpid == 0)
+  {
     printf("I am the child process, my process id is %d\n", getpid());
-    sleep(10);
-  } else {
+    sleep(1);
+    printf("child process DONE\n");
+    exit(EXIT_SUCCESS);
+  }
+  else
+  {
     printf("I am the parent process, my process id is %d\n", getpid());
     wait(NULL);
-    // exit(0);
+    printf("parent process DONE\n");
+    exit(EXIT_SUCCESS);
   }
-  return 0;
+  exit(EXIT_SUCCESS);
 }
