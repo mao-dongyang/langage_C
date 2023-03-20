@@ -32,6 +32,11 @@ int main()
 	PrintBlockList(list);
 	PrintRecycleList(list);
 
+	AddElementEnd(list, 10);
+	PrintList(list);
+	PrintBlockList(list);
+	PrintRecycleList(list);
+
 	printf("\n");
 
 	// printf("Add 5, 3, 1\n");

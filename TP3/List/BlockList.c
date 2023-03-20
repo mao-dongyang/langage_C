@@ -63,6 +63,10 @@ void DeleteList(SList *list)
 SCell *GetCellFromBlock(SList *list)
 {
     SCell *pcell;
+    if ((pcell = GetCellFromRecycle(list)))
+    {
+        return pcell;
+    }
     while (!(pcell = _GetCellFromBlock(list->block)))
     {
         AddBlock(list->block);
@@ -95,6 +99,16 @@ SCell *_GetCellFromBlock(SBlock *bList)
         bList = bList->bnext;
     }
     return NULL;
+}
+
+SCell *GetCellFromRecycle(SList *list)
+{
+    SCell *pcell = list->recycle;
+    if (pcell != NULL)
+    {
+        list->recycle = pcell->next;
+    }
+    return pcell;
 }
 
 SCell *AddElementBegin(SList *list, int data)

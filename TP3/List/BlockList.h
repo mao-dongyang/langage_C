@@ -16,7 +16,9 @@ SCell *AddElementEnd(SList *list, Data elem);
 SCell *AddElementAfter(SList *list, SCell *cell, Data elem);
 void DeleteCell(SList *list, SCell *cell);
 void PrintRecycleList(SList *list);
-SCell* RecycleCell(SCell *, SCell *cell);
+SCell *RecycleCell(SCell *head, SCell *cell);
+SCell *GetCellFromBlock(SList *list);
+SCell *GetCellFromRecycle(SList *list);
 
 SCell *GetFirstElement(SList *list);
 SCell *GetLastElement(SList *list);
